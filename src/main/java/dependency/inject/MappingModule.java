@@ -2,6 +2,7 @@ package dependency.inject;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.name.Names;
+import com.google.inject.spi.Element;
 
 import Named.AdminPage;
 import Named.AdminUser;
@@ -10,6 +11,9 @@ import Named.Page;
 import bindings.Log;
 import bindings.Mysqllog;
 import bindings.TransactionLog;
+import providergo.WebDriver;
+import providergo.WebTransactions;
+import untargettedbinding.WebProvider;
 
 public class MappingModule extends AbstractModule {
 
@@ -42,7 +46,11 @@ public class MappingModule extends AbstractModule {
 	        .toInstance(10);
 		 
 		 
-		
+		 //Providers
+		 bind(WebTransactions.class).toProvider(WebDriver.class);
+		 
+		//untargetted Bindings
+		//bind(Element.class);
 	}
 
 }

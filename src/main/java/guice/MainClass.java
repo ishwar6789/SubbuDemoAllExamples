@@ -2,11 +2,13 @@ package guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import com.google.inject.spi.Element;
 
 import Named.Projectmanager;
 import bindings.Logexample;
 import dependency.inject.App;
 import dependency.inject.MappingModule;
+import providergo.WebTransactions;
 import providesannot.ExamModules;
 import providesannot.HeadMaster;
 import providesannot.Result;
@@ -41,7 +43,16 @@ public class MainClass {
 			 System.out.println(hm.getTeacher() + " HashCode : " +hm.hashCode());
 			 HeadMaster hm2 =   injector2.getInstance(HeadMaster.class);
 			 System.out.println(hm2.getTeacher()+ " HashCode : " +hm2.hashCode());
+
+			 // Provider
+			 WebTransactions test = injector.getInstance(WebTransactions.class);
+			 System.out.println("check the result chrome "+test.getBrowser());
 			 
+			 //untargetted bindings
+			 //@implementeby not working will need to revisit later
+			 Injector injector3 = Guice.createInjector();
+			 injector3.getInstance(Element.class);
+			// System.out.println("Utargeteed bindings : " + ele.g );
 			 
 	}
 
